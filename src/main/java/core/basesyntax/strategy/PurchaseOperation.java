@@ -3,9 +3,10 @@ package core.basesyntax.strategy;
 import core.basesyntax.common.FruitTransaction;
 import core.basesyntax.db.Storage;
 
-public class PurchaseOperation implements OperationHandler{
+public class PurchaseOperation implements OperationHandler {
     @Override
     public void apply(FruitTransaction fruitTransaction) {
-        Storage.storage.merge(fruitTransaction.getFruit(), -fruitTransaction.getQuantity(),  Integer::sum);
+        Storage.storage.merge(fruitTransaction.getFruit(),
+                -fruitTransaction.getQuantity(), Integer::sum);
     }
 }

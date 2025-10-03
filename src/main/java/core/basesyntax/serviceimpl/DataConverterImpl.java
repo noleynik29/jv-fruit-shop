@@ -1,4 +1,4 @@
-package core.basesyntax.serviceImpl;
+package core.basesyntax.serviceimpl;
 
 import core.basesyntax.common.FruitTransaction;
 import core.basesyntax.service.DataConverter;
