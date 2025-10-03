@@ -1,10 +1,23 @@
 package core.basesyntax;
 
 import core.basesyntax.common.FruitTransaction;
-import core.basesyntax.service.*;
-import core.basesyntax.serviceImpl.*;
-import core.basesyntax.strategy.*;
-
+import core.basesyntax.service.DataConverter;
+import core.basesyntax.service.FileReader;
+import core.basesyntax.service.FileWriter;
+import core.basesyntax.service.OperationStrategy;
+import core.basesyntax.service.ReportGenerator;
+import core.basesyntax.service.ShopService;
+import core.basesyntax.serviceImpl.DataConverterImpl;
+import core.basesyntax.serviceImpl.FileReaderImpl;
+import core.basesyntax.serviceImpl.FileWriterImpl;
+import core.basesyntax.serviceImpl.OperationStrategyImpl;
+import core.basesyntax.serviceImpl.ReportGeneratorImpl;
+import core.basesyntax.serviceImpl.ShopServiceImpl;
+import core.basesyntax.strategy.BalanceOperation;
+import core.basesyntax.strategy.OperationHandler;
+import core.basesyntax.strategy.PurchaseOperation;
+import core.basesyntax.strategy.ReturnOperation;
+import core.basesyntax.strategy.SupplyOperation;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +31,6 @@ public class HelloWorld {
         List<String> inputReport = fileReader.read(INPUT_FILE_PATH);
 
         DataConverter dataConverter = new DataConverterImpl();
-        List<FruitTransaction> transactions = dataConverter.convertToTransaction(inputReport);
 
         Map<FruitTransaction.Operation, OperationHandler> operationHandlers = new HashMap<>();
         operationHandlers.put(FruitTransaction.Operation.BALANCE, new BalanceOperation());
@@ -27,6 +39,7 @@ public class HelloWorld {
         operationHandlers.put(FruitTransaction.Operation.SUPPLY, new SupplyOperation());
         OperationStrategy operationStrategy = new OperationStrategyImpl(operationHandlers);
 
+        List<FruitTransaction> transactions = dataConverter.convertToTransaction(inputReport);
         ShopService shopService = new ShopServiceImpl(operationStrategy);
         shopService.process(transactions);
 
