@@ -3,14 +3,14 @@ package core.basesyntax.serviceimpl;
 import core.basesyntax.common.FruitTransaction;
 import core.basesyntax.service.OperationStrategy;
 import core.basesyntax.strategy.OperationHandler;
-
 import java.util.Collections;
 import java.util.Map;
 
 public class OperationStrategyImpl implements OperationStrategy {
     private final Map<FruitTransaction.Operation, OperationHandler> operationHandlerMap;
 
-    public OperationStrategyImpl(Map<FruitTransaction.Operation, OperationHandler> operationHandlerMap) {
+    public OperationStrategyImpl(Map<FruitTransaction.Operation,
+            OperationHandler> operationHandlerMap) {
         if (operationHandlerMap == null) {
             throw new RuntimeException("Operation handler map must not be null");
         }
@@ -28,8 +28,8 @@ public class OperationStrategyImpl implements OperationStrategy {
 
         OperationHandler handler = operationHandlerMap.get(operation);
         if (handler == null) {
-            throw new RuntimeException("No handler found for operation '" + operation +
-                    "'. Supported operations: " + operationHandlerMap.keySet());
+            throw new RuntimeException("No handler found for operation '" + operation
+                    + "'. Supported operations: " + operationHandlerMap.keySet());
         }
 
         return handler;

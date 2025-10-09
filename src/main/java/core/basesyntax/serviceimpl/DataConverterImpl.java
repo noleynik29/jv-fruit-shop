@@ -18,7 +18,8 @@ public class DataConverterImpl implements DataConverter {
 
         String header = inputReport.get(0).trim();
         if (!header.equalsIgnoreCase("type,fruit,quantity")) {
-            throw new RuntimeException("Invalid or missing CSV header. Expected: 'type,fruit,quantity'");
+            throw new RuntimeException("Invalid or missing CSV header. "
+                    + "Expected: 'type,fruit,quantity'");
         }
 
         List<FruitTransaction> fruitTransactions = new ArrayList<>();
@@ -38,7 +39,8 @@ public class DataConverterImpl implements DataConverter {
             String code = lineArray[0].trim();
             String fruit = lineArray[1].trim();
             if (fruit.isEmpty()) {
-                throw new RuntimeException("Fruit name cannot be empty at line " + (i + 1) + ": " + line);
+                throw new RuntimeException("Fruit name cannot be empty at line "
+                        + (i + 1) + ": " + line);
             }
 
             int quantity;
@@ -50,7 +52,8 @@ public class DataConverterImpl implements DataConverter {
             }
 
             if (quantity < 0) {
-                throw new RuntimeException("Quantity cannot be negative at line " + (i + 1) + ": " + line);
+                throw new RuntimeException("Quantity cannot be negative at line "
+                        + (i + 1) + ": " + line);
             }
 
             FruitTransaction.Operation operation;
