@@ -1,5 +1,4 @@
 package core.basesyntax.common;
-
 public class FruitTransaction {
     private Operation operation;
     private String fruit;
