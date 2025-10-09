@@ -1,4 +1,5 @@
 package core.basesyntax.strategy;
+
 import core.basesyntax.common.FruitTransaction;
 import core.basesyntax.db.Storage;
 
